@@ -1,0 +1,46 @@
+print("GPA calculator")
+
+print("="*30)
+
+subjects=["ฟิสิกส์","เคมี","ชีวะ","คณิตศาสตร์","ภาษาอังกฤษ","ภาษาไทย","สังคมศึกษา"]
+credit=[2.0,1.5,1.5,1.5,1.0,1.0,1.0]
+grade=[4,3.5,3,2.5,2,1.5,1]
+counter=[80,75,70,65,60,55,50]
+score={}
+error=0
+b={}
+total=0
+i=-1
+
+for x in subjects:
+     score[x]=float(input(f"คะแนนวิชา{x}:"))
+
+print("="*30)
+
+for n in score:
+    if score[n]<0 or score[n]>100:
+        print(f"คะแนนวิชา{n}ของคุณไม่ถูกต้อง")
+        error=1
+    else:
+        for g in range(7):
+            if(score[n]>=counter[g]):
+                i+=1
+                print(f"วิชา{n} หน่วยกิต {credit[i]} เกรด {grade[g]}")
+                b[n]=grade[g]*credit[i]
+                break
+            if(score[n]<50):
+                i+=1
+                print(f"วิชา{n} หน่วยกิต {credit[i]} เกรด 0")
+                b[n]=0
+                break
+
+print("="*30)
+
+if error==0:
+    for m in b:
+        total+=b[m]
+    f=total/9.5
+    print("หน่วยกิตรวมคือ 9.5")
+    print("เกรดเฉลี่ยของคุณคือ %.2f"%f)
+else:
+    print("ไม่สามารถคำนวนหน่วยเกรดเฉลี่ยได้")
